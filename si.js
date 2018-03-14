@@ -1,4 +1,14 @@
+/*************************
+*************D*ONT********
+******FUCKING*************
+*************DARE*********
+*********TOUCH************
+********MY****************
+***********SPAGHETTIS*****
+
 /* 20*25 */
+
+
 
 var root = document.getElementById("root");
 var keydown = false;
@@ -44,17 +54,13 @@ function printGrid(){
 	root.innerHTML = html;
 }
 
-function move(){
-
-}
-
-
 document.addEventListener('keydown',function(e){
 	e.preventDefault();
 	if(keydown)
 		return;
 	keydown = true;
 	var key = e.key;
+	console.log(key)
 	if(key == "ArrowLeft"){
 		if(pos_c == 0){
 			keydown = false;
@@ -75,26 +81,25 @@ document.addEventListener('keydown',function(e){
 		pos_c++;
 		printGrid();//
 	}
+	if(key == " "){
+		var shooter_c, shooter_r;
+		shooter_c = Math.floor(length/2)+pos_c;
+		shooter_r = pos_r-1;
+		var pewpew = setInterval(function(){
+			if(shooter_r+1 != pos_r)
+				grid[shooter_r+1][shooter_c] = 0;
+			if(shooter_r == -1){
+				clearInterval(pewpew)
+				printGrid();
+				return;
+			}
+			grid[shooter_r][shooter_c] = 3;
+			printGrid();
+			shooter_r--;
+		},200);
+	}
 	keydown = false;
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+},false)
 
 
 
